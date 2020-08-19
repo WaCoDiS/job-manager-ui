@@ -94,6 +94,7 @@
                     <app-static-subset
                       [index]="i"
                       [defaultProcessID]="input.processInputId"
+                      [selectedTool]="selectedProcessingTool"
                       *ngIf="
                         input.inputType == 'StaticSubsetDefinition';
                         else copernicus
@@ -104,6 +105,7 @@
                     <app-copernicus-subset
                       [index]="i"
                       [defaultProcessID]="input.processInputId"
+                      [selectedTool]="selectedProcessingTool"
                     ></app-copernicus-subset>
                     <!--(selectedSatelliteEmit)="setSatellite($event)"  (selectedCloudCoverageEmit)="setCloudCoverage($event)"  -->
                   </ng-template>

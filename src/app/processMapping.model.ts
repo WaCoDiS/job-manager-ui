@@ -7,7 +7,9 @@ export interface ProcessMapping {
     inputs: [
       {
         inputType: string,
-        processInputId: string
+        processInputId: string,
+        label: string,
+        hint: string
       }
     ];
 }

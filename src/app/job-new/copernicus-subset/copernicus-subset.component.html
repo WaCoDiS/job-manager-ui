@@ -1,5 +1,3 @@
-<!-- max Cloud coverage -->
-<!-- <h6 style="color: #4d80bc;">Copernicus Subset</h6> -->
 
 <fieldset ngModelGroup="input_{{ index }}">
   <!--Source Type, needs to be predefined, read from configuration file-->
@@ -19,9 +17,14 @@
 
   <!--Satellite-->
   <div class="form-group">
-    <label for="satellite"
-      >Satellit <span style="color: red;">*</span>
-    </label>
+    <div *ngFor="let process of processMappings">
+      <div *ngIf="process.processId === selectedTool">
+        <label for="inputData">
+          {{process.inputs[index].label}}
+          <span style="color: red;">*</span>
+        </label>
+      </div>
+    </div>
     <select
       style="max-width: 350px;"
       class="form-control"
@@ -37,6 +40,15 @@
       <option value="sentinel-2">Sentinel-2</option>
       <!-- <option value="sentinel-3">Sentinel-3</option> -->
     </select>
+
+    <!--Give a short explanation on the required input data below the input field, this information is from the processMappings.json-->
+    <div *ngFor="let process of processMappings">
+      <div *ngIf="process.processId === selectedTool">
+        <small class="form-text text-muted">
+          {{ process.inputs[index].hint }}
+        </small>
+      </div>
+    </div>
   </div>
 
   <!--maximum Cloud Coverage -->

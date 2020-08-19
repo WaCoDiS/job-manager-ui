@@ -11,9 +11,9 @@ import { HttpClient } from '@angular/common/http';
 // Bootstrap models
 // Boostrap Modal
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 // Bootstrap Datepicker
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-
 
 // Data models
 import { ProcessMapping } from './../processMapping.model';
@@ -35,7 +35,7 @@ export class JobNewComponent implements OnInit {
   // processMappings: Instance is set in ngOnInit
   processMappings: ProcessMapping[] = [];
 
-  // selectedProcessingTool is set in the for loop in the template
+  // selectedProcessingTool is set in the for-loop in the template
   selectedProcessingTool = '';
   relevantProductName = this.valueProductName(this.processMappings, this.selectedProcessingTool);
   selectedSatellite = '';

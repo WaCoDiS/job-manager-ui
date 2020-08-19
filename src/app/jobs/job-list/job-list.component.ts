@@ -1,3 +1,4 @@
+import { Event } from './../../modelGet/event.model';
 // import { Job } from './../../modelGet/job.model';
 import { Job } from '../../modelGet/job.model';
 import { DataService } from '../../services/data.service';
@@ -15,6 +16,8 @@ export class JobListComponent implements OnInit {
   error: null;
   errorStatus: null;
 
+
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
@@ -22,8 +25,9 @@ export class JobListComponent implements OnInit {
     // Fetch all Jobs from server
     this.dataService.getData()
       .subscribe((jobs) => {
-        this.jobs = jobs.data;
-        console.log('ok');
+        this.jobs = jobs.data.filter(job => job.status !== 'finished');
+        // console.log(this.jobs);
+        console.log('ok, fetched all jobs except for jobs with status "finished"');
       }, error => {
         this.error = error;
         this.errorStatus = error.status;
@@ -32,14 +36,14 @@ export class JobListComponent implements OnInit {
   }
 
   /*   Retrieves id from the list-item after clicked on delete button,
-    deletes the jon with the relevant id and requests the jobs from the api again */
+    deletes the job with the relevant id and requests the jobs from the api again */
   onDelete(event: string) {
     this.dataService.deleteData(event)
       .subscribe(() => {
         console.log('id of deleted job: ' + event);
         this.dataService.getData()
           .subscribe((jobs) => {
-            this.jobs = jobs.data;
+            this.jobs = jobs.data.filter(job => job.status !== 'finished');
           });
       });
   }

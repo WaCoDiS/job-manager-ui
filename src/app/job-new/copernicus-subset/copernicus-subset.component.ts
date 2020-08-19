@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { ProcessMapping } from './../../processMapping.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-copernicus-subset',
@@ -8,11 +10,16 @@ import { ControlContainer, NgForm } from '@angular/forms';
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class CopernicusSubsetComponent implements OnInit {
+  // index of the process input,
+  // so when a process has multiple inputobjects, the index gives information about which of the inputs you referring to
   @Input() index: number;
   @Input() defaultProcessID: string;
-  selectedSatellite = '';
+  @Input() selectedTool: string;
+
   @Output() selectedSatelliteEmit: EventEmitter<string> = new EventEmitter();
   @Output() selectedCloudCoverageEmit: EventEmitter<number> = new EventEmitter();
+
+  selectedSatellite = '';
 
   sourceType = 'CopernicusSubsetDefinition';
 
@@ -20,16 +27,33 @@ export class CopernicusSubsetComponent implements OnInit {
 
   productType: string;
 
-  constructor() { }
+  // processMappings: empty instance for processMappings which later holds the processMappings.json
+  processMappings: ProcessMapping[] = [];
+
+
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+
+
   ngOnInit(): void {
+    // Get instance of the process mappings json file
+    this.http.get<ProcessMapping[]>('assets/processMappings.json')
+      .subscribe(data => {
+        this.processMappings = data;
+      });
   }
 
-  updateSelectedSatellite(event: any){
+
+
+  updateSelectedSatellite(event: any) {
     // console.log(event);
     this.selectedSatelliteEmit.emit(event);
   }
 
-  updateCloudCoverage(event: any){
+  updateCloudCoverage(event: any) {
     // console.log(event);
     this.selectedCloudCoverageEmit.emit(event);
   }

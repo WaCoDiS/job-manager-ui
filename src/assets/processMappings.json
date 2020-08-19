@@ -8,11 +8,15 @@
         "inputs": [
             {
                 "inputType": "CopernicusSubsetDefinition",
-                "processInputId": "OPTICAL_IMAGES_SOURCES_1"
+                "processInputId": "OPTICAL_IMAGES_SOURCES_1",
+                "label": "optical imagery source",
+                "hint": "a hint"
             },
             {
                 "inputType": "CopernicusSubsetDefinition",
-                "processInputId": "OPTICAL_IMAGES_SOURCES_2"
+                "processInputId": "OPTICAL_IMAGES_SOURCES_2",
+                "label": "optical imagery data",
+                "hint": "a hint"
             }
         ]
     },
@@ -25,15 +29,21 @@
         "inputs": [
             {
                 "inputType": "CopernicusSubsetDefinition",
-                "processInputId": "OPTICAL_IMAGES_SOURCES"
+                "processInputId": "OPTICAL_IMAGES_SOURCES",
+                "label": "optical imagery source",
+                "hint": "a hint"
             },
             {
                 "inputType": "StaticSubsetDefinition",
-                "processInputId": "REFERENCE_DATA"
+                "processInputId": "REFERENCE_DATA",
+                "label": "reference data",
+                "hint": "a hint"
             },
             {
                 "inputType": "StaticSubsetDefinition",
-                "processInputId": "AREA_OF_INTEREST"
+                "processInputId": "AREA_OF_INTEREST",
+                "label": "area of interest",
+                "hint": "another hint"
             }
         ]
     },
@@ -46,11 +56,15 @@
         "inputs": [
             {
                 "inputType": "CopernicusSubsetDefinition",
-                "processInputId": "OPTICAL_IMAGES_SOURCES"
+                "processInputId": "OPTICAL_IMAGES_SOURCES",
+                "label":"optical imagery source",
+                "hint": "a hint"
             },
             {
                 "inputType": "StaticSubsetDefinition",
-                "processInputId": "MASKING_DATA"
+                "processInputId": "MASKING_DATA",
+                "label": "masking data",
+                "hint": "a hint"
             }
         ]
     },
@@ -63,7 +77,9 @@
         "inputs": [
             {
                 "inputType": "CopernicusSubsetDefinition",
-                "processInputId": "OPTICAL_IMAGES_SOURCES"
+                "processInputId": "OPTICAL_IMAGES_SOURCES",
+                "label": "optical imagery source",
+                "hint": "a hint"
             }
         ]
     },
@@ -76,7 +92,9 @@
         "inputs": [
             {
                 "inputType": "CopernicusSubsetDefinition",
-                "processInputId": "SENTINEL_2_IMAGE_SOURCE"
+                "processInputId": "SENTINEL_2_IMAGE_SOURCE",
+                "label": "sentinel-2 imagery",
+                "hint": "a hint"
             }
         ]
     },
@@ -89,7 +107,9 @@
         "inputs": [
             {
                 "inputType": "CopernicusSubsetDefinition",
-                "processInputId": "SENTINEL_2_IMAGE_SOURCE"
+                "processInputId": "SENTINEL_2_IMAGE_SOURCE",
+                "label": "sentinel-2 imagery",
+                "hint": "a hint"
             }
         ]
     }

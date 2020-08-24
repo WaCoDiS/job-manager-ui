@@ -9,14 +9,12 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES_1",
-                "label": "optical imagery source",
-                "hint": "a hint"
+                "label": "Optische Satellitenszene (erster Zeitpunkt)"
             },
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES_2",
-                "label": "optical imagery data",
-                "hint": "a hint"
+                "label": "Optische Satellitenszene (zweiter Zeitpunkt)"
             }
         ]
     },
@@ -30,20 +28,19 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
-                "label": "optical imagery source",
-                "hint": "a hint"
+                "label": "Optische Satellitenszene"
             },
             {
                 "inputType": "StaticSubsetDefinition",
                 "processInputId": "REFERENCE_DATA",
-                "label": "reference data",
-                "hint": "a hint"
+                "label": "Referenzdaten",
+                "hint": "URL eines WFS, der die Trainingsdaten für die Landbedeckungsklassifikation bereitstellt"
             },
             {
                 "inputType": "StaticSubsetDefinition",
                 "processInputId": "AREA_OF_INTEREST",
-                "label": "area of interest",
-                "hint": "another hint"
+                "label": "Observationsgebiet",
+                "hint": "Koordinaten der Bounding Box im EPSG:4326. Schema: [minLon, minLat, maxLon, maxLat]"
             }
         ]
     },
@@ -57,14 +54,13 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
-                "label":"optical imagery source",
-                "hint": "a hint"
+                "label": "Optische Satellitenszene"
             },
             {
                 "inputType": "StaticSubsetDefinition",
                 "processInputId": "MASKING_DATA",
                 "label": "masking data",
-                "hint": "a hint"
+                "hint": "URL eines WFS, der Polygone zum Maskieren versiegelter Flächen enthält"
             }
         ]
     },
@@ -78,8 +74,7 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
-                "label": "optical imagery source",
-                "hint": "a hint"
+                "label": "Optische Satellitenszene"
             }
         ]
     },
@@ -93,8 +88,7 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "SENTINEL_2_IMAGE_SOURCE",
-                "label": "sentinel-2 imagery",
-                "hint": "a hint"
+                "label": "Optische Satellitenszene"
             }
         ]
     },
@@ -108,8 +102,7 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "SENTINEL_2_IMAGE_SOURCE",
-                "label": "sentinel-2 imagery",
-                "hint": "a hint"
+                "label": "Optische Satellitenszene"
             }
         ]
     }

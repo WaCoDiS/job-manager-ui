@@ -9,12 +9,12 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES_1",
-                "label": "Optische Satellitenszene (erster Zeitpunkt)"
+                "label": "Optische Satellitenszene (1. Zeitpunkt)"
             },
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES_2",
-                "label": "Optische Satellitenszene (zweiter Zeitpunkt)"
+                "label": "Optische Satellitenszene (2. Zeitpunkt)"
             },
             {
               "inputType": "StaticSubsetDefinition",

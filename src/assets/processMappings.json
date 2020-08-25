@@ -65,7 +65,7 @@
             {
                 "inputType": "StaticSubsetDefinition",
                 "processInputId": "MASKING_DATA",
-                "label": "masking data",
+                "label": "Maske",
                 "hint": "URL eines WFS, der Polygone zum Maskieren versiegelter Flächen enthält"
             }
         ]

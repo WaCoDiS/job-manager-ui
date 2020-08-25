@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  wacodisAPI: 'https://wacodis.demo.52north.org/wacodis-job-definition-api/jobDefinitions'
+  wacodisAPI: 'http://localhost:8080/wacodis-job-definition-api/jobDefinitions',
+  processMappingsPath: 'assets/processMappings.json'
 };

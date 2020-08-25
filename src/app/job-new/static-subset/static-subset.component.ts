@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { ProcessMapping } from './../../processMapping.model';
 import { HttpClient } from '@angular/common/http';
+// import environment variables
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-static-subset',
@@ -29,7 +31,7 @@ export class StaticSubsetComponent implements OnInit {
 
   ngOnInit(): void {
         // Get instance of the process mappings json file
-        this.http.get<ProcessMapping[]>('assets/processMappings.json')
+        this.http.get<ProcessMapping[]>(environment.processMappingsPath)
         .subscribe(data => {
           this.processMappings = data;
         });

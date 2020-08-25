@@ -1,6 +1,8 @@
 import { ProcessMapping } from './processMapping.model';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// import environment variables
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -37,7 +39,7 @@ export class AppComponent implements OnInit {
   constructor(private httpClient: HttpClient){}
 
    ngOnInit(){
-    this.httpClient.get<ProcessMapping[]>('assets/processMappings.json').subscribe(data => {
+    this.httpClient.get<ProcessMapping[]>(environment.processMappingsPath).subscribe(data => {
       this.processMappings = data;
     });
    }

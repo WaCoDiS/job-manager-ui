@@ -1,5 +1,7 @@
 
 import { DataService } from './../services/data.service';
+// import environment variables
+import { environment } from './../../environments/environment';
 
 
 // Angular Modules
@@ -78,7 +80,7 @@ export class JobNewComponent implements OnInit {
 
   ngOnInit() {
     // Get instance of the process mappings json file
-    this.http.get<ProcessMapping[]>('assets/processMappings.json')
+    this.http.get<ProcessMapping[]>(environment.processMappingsPath)
       .subscribe(data => {
         this.processMappings = data;
       });

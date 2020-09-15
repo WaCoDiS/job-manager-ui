@@ -20,7 +20,7 @@
               "inputType": "StaticSubsetDefinition",
               "processInputId": "MASKING_DATA",
               "label": "Maske",
-              "hint": "URL eines WFS, der Polygone zum Maskieren bewaldeter Flächen enthält"
+              "hint": "URL eines WFS, der Polygone zum Maskieren von Flächen enthält"
           }
         ]
     },

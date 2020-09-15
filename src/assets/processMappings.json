@@ -1,7 +1,7 @@
 [
     {
         "processId": "de.hsbo.wacodis.forest_vitality_change",
-        "name": "Änderung der Waldvitalität",
+        "name": "Änderung der Vitalität",
         "productCollection": [
             "forest-vitality-change"
         ],

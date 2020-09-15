@@ -1,7 +1,8 @@
 [
     {
         "processId": "de.hsbo.wacodis.forest_vitality_change",
-        "name": "Änderung der Vitalität",
+        "name": "Änderung der Flächenvitalität (z.B. von Grünlandflächen)",
+        "description": "Berechnet die Vitalitätsänderung von Flächen zu zwischen zwei verschiedenen Zeitpunkten. Als Ergebnis wird ein Rasterdatensatz generiert, dessen Rasterzellwerte die Vitalitätsänderung wiedergeben.",
         "productCollection": [
             "forest-vitality-change"
         ],
@@ -22,11 +23,18 @@
               "label": "Maske",
               "hint": "URL eines WFS, der Polygone zum Maskieren von Flächen enthält"
           }
+        ],
+        "outputs": [
+            {
+                "label": "Vitalitätsänderung",
+                "description": "Rasterdatensatz, dessen Rasterzellen die Veränderung der Flächenvitalität zwischen zwei Zeitpunkten beinhalten"
+            }
         ]
     },
     {
         "processId": "de.hsbo.wacodis.land_cover_classification",
         "name": "Landbedeckungsklassifikation",
+        "description": "Klassifiziert die Landbedeckung aus einer Satellitenbildszene anhand von bereitgestellten Trainingstdaten. Die Rasterzellwerte des generierten Rasterdatensatzes zeigen die Landbedeckungsklasse an.",
         "productCollection": [
             "land-cover-classification"
         ],
@@ -53,6 +61,7 @@
     {
         "processId": "de.hsbo.wacodis.sealing_factor",
         "name": "Versiegelungsgrad",
+        "description": "Ermittlung des Versiegelungsgrad von Flächen aus einer Satellitenbildszene. Der Versiegelungsgrad wird ausgewählte (maskierte) Flächen berechnet. Der Grad der Versiegelung wird als Rasterzellwerte in einem Ergebnisdatensatz angegeben.",
         "productCollection": [
             "sealing-factor"
         ],
@@ -73,6 +82,7 @@
     {
         "processId": "de.hsbo.wacodis.vegetation_density_lai",
         "name": "Vegetationsdichte (Leaf Area Index)",
+        "description": "Ermittlung des Vegetationsdichte als Blattflächenindex (Leaf Area Index) aus einer Satellitenbildszene. Der Grad der Versiegelung wird als Rasterzellwerte in einem Ergebnisdatensatz angegeben.",
         "productCollection": [
             "vegetation-density-lai"
         ],
@@ -86,7 +96,8 @@
     },
     {
         "processId": "de.hsbo.wacodis.snap.ndvi",
-        "name": "Normalized Difference Vegetation Index",
+        "name": "Normalized Difference Vegetation Index (NDVI)",
+        "description": "Generiert aus einer Satellitenbildszene einen Rasterdatensatz, dessen Zellwerte den NDVI enthalten.",
         "productCollection": [
             "ndvi"
         ],
@@ -100,7 +111,8 @@
     },
     {
         "processId": "de.hsbo.wacodis.snap.ndwi2",
-        "name": "Normalized Difference Water Index 2",
+        "name": "Normalized Difference Water Index 2 (NDWI2)",
+        "description": "Generiert aus einer Satellitenbildszene einen Rasterdatensatz, dessen Zellwerte den NDWI2 enthalten.",
         "productCollection": [
             "ndwi2"
         ],

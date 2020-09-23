@@ -82,9 +82,24 @@
     {
         "processId": "de.hsbo.wacodis.vegetation_density_lai",
         "name": "Vegetationsdichte (Leaf Area Index)",
-        "description": "Ermittlung des Vegetationsdichte als Blattflächenindex (Leaf Area Index) aus einer Satellitenbildszene. Der Grad der Versiegelung wird als Rasterzellwerte in einem Ergebnisdatensatz angegeben.",
+        "description": "Ermittlung des Vegetationsdichte als Blattflächenindex (Leaf Area Index) aus einer Satellitenbildszene. Der LAI wird als Rasterzellwerte in einem Ergebnisdatensatz angegeben.",
         "productCollection": [
             "vegetation-density-lai"
+        ],
+        "inputs": [
+            {
+                "inputType": "CopernicusSubsetDefinition",
+                "processInputId": "OPTICAL_IMAGES_SOURCES",
+                "label": "Optische Satellitenszene"
+            }
+        ]
+    },
+    {
+        "processId": "de.hsbo.wacodis.vegetation_density_ndvi",
+        "name": "Vegetationsdichte (NDVI)",
+        "description": "Ermittlung des Vegetationsdichte als Normalized Difference Vegetation Index (NDVI) aus einer Satellitenbildszene. Der NDVI wird als Rasterzellwerte in einem Ergebnisdatensatz angegeben.",
+        "productCollection": [
+            "vegetation-density-ndvi"
         ],
         "inputs": [
             {

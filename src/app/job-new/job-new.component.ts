@@ -139,10 +139,10 @@ export class JobNewComponent implements OnInit {
       description: this.signupForm.value.jobDescription,
       execution: {
         event: {
-          eventType: 'SingleJobExecutionEvent',
-          startAt: timeFormatted
+          eventType: 'SingleJobExecutionEvent'
         },
         pattern: this.signupForm.value.pattern,
+        startAt: timeFormatted
 
       },
       id: '',

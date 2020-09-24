@@ -413,9 +413,9 @@
             {{ jobForPost.execution.pattern }}
           </p>
           <!--Single Event DateTime-->
-          <p *ngIf="jobForPost.execution.event.startAt">
+          <p *ngIf="jobForPost.execution.startAt">
             <b>Ausführungsmoment: </b> <br />
-            {{ jobForPost.execution.event.startAt | date: "medium" }}
+            {{ jobForPost.execution.startAt | date: "medium" }}
           </p>
           <br />
           <hr />

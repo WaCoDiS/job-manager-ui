@@ -87,9 +87,9 @@
               }}
             </p>
             <div *ngIf="job.execution.event">
-              <p *ngIf="job.execution.event.startAt">
+              <p *ngIf="job.execution.startAt">
                 <b>Einmaliger Ausführungsmoment (Datum, Uhrzeit)</b><br />
-                {{  job.execution.event.startAt | date:'short'}}
+                {{  job.execution.startAt | date:'short'}}
               </p>
             </div>
 

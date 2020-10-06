@@ -7,16 +7,17 @@
     <app-job-list-item
       *ngFor="let jobElement of jobs"
       [job]="jobElement"
-      (idDelete)="onDelete($event)"
-    >
+      (idDelete)="onDelete($event)">
     </app-job-list-item>
+
 
     <ngb-pagination
       [collectionSize]="pages*10"
       class="d-flex justify-content-center"
       [(page)]="page"
       aria-label="Default pagination"
-      (pageChange)="logPage($event-1)"></ngb-pagination>
+      (pageChange)="logPage($event-1)">
+    </ngb-pagination>
   </div>
 
   <!-- <pre>Current page: {{page}}</pre> -->

@@ -31,7 +31,7 @@ export class JobListComponent implements OnInit {
 
   ngOnInit() {
 
-    // Fetch Jobs from server
+    // Fetches first page from server
     this.dataService.getData()
       .subscribe((jobs) => {
         // console.log(jobs);
@@ -63,12 +63,17 @@ export class JobListComponent implements OnInit {
       });
   }
 
+  // get the data from a certain page, when the pagination widget is used
   logPage(event: number) {
     // console.log(event);
     this.dataService.getPage(event)
     .subscribe((jobs) => {
       // console.log('new page:' + event);
       this.jobs = jobs.data.filter(job => job.status !== 'finished');
+    }, error => {
+      this.error = error;
+      this.errorStatus = error.status;
+      console.log(error);
     });
 
 

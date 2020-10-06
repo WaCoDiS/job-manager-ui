@@ -21,13 +21,14 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  // Fetch all jobs from server
-  getData() {
+  // TODO : Probably redundant- delete!?
+  // Fetch jobs of first page from server
+/*   getData() {
     return this.http.
       get<Page<Job>>(environment.wacodisAPI )
       .pipe(
         catchError(this.handleError)); // http://localhost:8080/jobDefinitions
-  }
+  } */
 
   // Post a job
   storeData(jobToPost: any) {
@@ -50,10 +51,12 @@ export class DataService {
     return throwError(error);
   }
 
- // get new page of jobs
+ // get page of jobs
   getPage(event: number) {
     return this.http.
-    get<Page<Job>>(environment.wacodisAPI + `?page=${event}`);
+    get<Page<Job>>(environment.wacodisAPI + `?page=${event}`)
+    .pipe(
+      catchError(this.handleError));
   }
 }
 

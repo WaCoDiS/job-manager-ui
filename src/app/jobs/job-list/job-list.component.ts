@@ -23,7 +23,7 @@ export class JobListComponent implements OnInit {
   error: null;
   errorStatus: null;
   collectionSize: number;
-  page: number;
+  page: number = 0;
   pages: number;
 
   constructor(private dataService: DataService, private http: HttpClient) { }
@@ -32,7 +32,7 @@ export class JobListComponent implements OnInit {
   ngOnInit() {
 
     // Fetches first page from server
-    this.dataService.getData()
+/*     this.dataService.getData()
       .subscribe((jobs) => {
         // console.log(jobs);
         this.jobs = jobs.data.filter(job => job.status !== 'finished');
@@ -46,6 +46,18 @@ export class JobListComponent implements OnInit {
         this.error = error;
         this.errorStatus = error.status;
         console.log(error);
+      }); */
+
+      this.dataService.getPage(this.page)
+      .subscribe((jobs) => {
+        // console.log('new page:' + event);
+        this.jobs = jobs.data.filter(job => job.status !== 'finished');
+        // this.page = jobs.page;
+        this.pages = Math.ceil(jobs.total / 10);
+      }, error => {
+        this.error = error;
+        this.errorStatus = error.status;
+        console.log(error);
       });
   }
 
@@ -55,7 +67,7 @@ export class JobListComponent implements OnInit {
     this.dataService.deleteData(event)
       .subscribe(() => {
         console.log('id of deleted job: ' + event);
-        this.dataService.getData()
+        this.dataService.getPage(0)
           .subscribe((jobs) => {
             this.jobs = jobs.data.filter(job => job.status !== 'finished');
             this.pages = Math.ceil(jobs.total / 10);

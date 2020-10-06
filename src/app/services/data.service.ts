@@ -24,7 +24,7 @@ export class DataService {
   // Fetch all jobs from server
   getData() {
     return this.http.
-      get<Page<Job>>(environment.wacodisAPI)
+      get<Page<Job>>(environment.wacodisAPI )
       .pipe(
         catchError(this.handleError)); // http://localhost:8080/jobDefinitions
   }
@@ -48,6 +48,12 @@ export class DataService {
   handleError(error: HttpErrorResponse) {
     console.log(error.status);
     return throwError(error);
+  }
+
+ // get new page of jobs
+  getPage(event: number) {
+    return this.http.
+    get<Page<Job>>(environment.wacodisAPI + `?page=${event}`);
   }
 }
 

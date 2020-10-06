@@ -1,8 +1,15 @@
+import { Page } from './../../modelGet/page.model';
 import { Event } from './../../modelGet/event.model';
 // import { Job } from './../../modelGet/job.model';
 import { Job } from '../../modelGet/job.model';
 import { DataService } from '../../services/data.service';
 import { Component, OnInit, Output, Input } from '@angular/core';
+
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+// import environment variables
+import { environment } from './../../../environments/environment';
+
 
 
 
@@ -15,18 +22,25 @@ export class JobListComponent implements OnInit {
   jobs: Job[] = [];
   error: null;
   errorStatus: null;
+  collectionSize: number;
+  page: number;
+  pages: number;
 
+  constructor(private dataService: DataService, private http: HttpClient) { }
 
-
-  constructor(private dataService: DataService) { }
 
   ngOnInit() {
 
-    // Fetch all Jobs from server
+    // Fetch Jobs from server
     this.dataService.getData()
       .subscribe((jobs) => {
+        // console.log(jobs);
         this.jobs = jobs.data.filter(job => job.status !== 'finished');
+        this.page = jobs.page;
+        this.pages = Math.ceil(jobs.total / 10);
         // console.log(this.jobs);
+        // console.log('page:', this.page);
+        // console.log('pages:', this.pages);
         console.log('ok, fetched all jobs except for jobs with status "finished"');
       }, error => {
         this.error = error;
@@ -44,8 +58,20 @@ export class JobListComponent implements OnInit {
         this.dataService.getData()
           .subscribe((jobs) => {
             this.jobs = jobs.data.filter(job => job.status !== 'finished');
+            this.pages = Math.ceil(jobs.total / 10);
           });
       });
+  }
+
+  logPage(event: number) {
+    // console.log(event);
+    this.dataService.getPage(event)
+    .subscribe((jobs) => {
+      // console.log('new page:' + event);
+      this.jobs = jobs.data.filter(job => job.status !== 'finished');
+    });
+
+
   }
 
 }

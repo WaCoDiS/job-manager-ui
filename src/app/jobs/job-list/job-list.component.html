@@ -11,7 +11,12 @@
     >
     </app-job-list-item>
 
-    <ngb-pagination [collectionSize]="pages*10" [(page)]="page" aria-label="Default pagination" (pageChange)="logPage($event-1)"></ngb-pagination>
+    <ngb-pagination
+      [collectionSize]="pages*10"
+      class="d-flex justify-content-center"
+      [(page)]="page"
+      aria-label="Default pagination"
+      (pageChange)="logPage($event-1)"></ngb-pagination>
   </div>
 
   <!-- <pre>Current page: {{page}}</pre> -->

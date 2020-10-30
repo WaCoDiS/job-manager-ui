@@ -211,6 +211,10 @@
         </select>
       </div>
 
+      <div *ngIf="planProcessing == 'Sofort ausführen' || planProcessing == 'Einmalige Produkterstellung' ">
+        <input type="hidden" name="eventType" id="eventType" [(ngModel)]="eventType" />
+      </div>
+
       <!--Cronjob-->
       <div
         class="form-group"

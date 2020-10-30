@@ -42,6 +42,7 @@ export class JobNewComponent implements OnInit {
   relevantProductName = this.valueProductName(this.processMappings, this.selectedProcessingTool);
   selectedSatellite = '';
   jobForPost: JobPost;
+  eventType = 'SingleJobExecutionEvent';
 
   // For Input from Copernicus Component
   receivedSatellite: Event;
@@ -139,7 +140,7 @@ export class JobNewComponent implements OnInit {
       description: this.signupForm.value.jobDescription,
       execution: {
         event: {
-          eventType: 'SingleJobExecutionEvent'
+          eventType: this.signupForm.value.eventType //'SingleJobExecutionEvent'
         },
         pattern: this.signupForm.value.pattern,
         startAt: timeFormatted

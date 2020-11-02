@@ -1,3 +1,4 @@
+import { Execution } from './../modelGet/execution.model';
 
 import { DataService } from './../services/data.service';
 // import environment variables
@@ -22,8 +23,7 @@ import { ProcessMapping } from './../processMapping.model';
 import { JobPost } from './../modelPost/JobPost.model';
 import { Event } from './../modelGet/event.model';
 
-// Services
-
+import cron from 'cron-validate';
 
 @Component({
   selector: 'app-job-new',
@@ -42,6 +42,8 @@ export class JobNewComponent implements OnInit {
   relevantProductName = this.valueProductName(this.processMappings, this.selectedProcessingTool);
   selectedSatellite = '';
   jobForPost: JobPost;
+
+  // For execution object
   eventType = 'SingleJobExecutionEvent';
 
   // For Input from Copernicus Component
@@ -51,7 +53,7 @@ export class JobNewComponent implements OnInit {
   // For process planing
    planProcessing = '';
 
-  // for retry setting
+  // For retry setting
   retryRate = 3;
   retryDelay = 500;
 
@@ -119,6 +121,8 @@ export class JobNewComponent implements OnInit {
   }
 
 
+
+
   // Set the new job to be send
   setJob() {
     // Get value for post request key 'productCollcetion' by applying custom method 'valueProductCollection'
@@ -128,9 +132,10 @@ export class JobNewComponent implements OnInit {
 
     // Create date object from input of datepicker and timepicker
     // create datetime for planned single execution
-    const someV = this.createDateTimeObject(this.signupForm);
-    const timeFormatted = someV;
+    // const someV = this.createDateTimeObject(this.signupForm);
+    // const timeFormatted = someV;
 
+    const executionObject = this.setExecution(this.signupForm);
     // Set job object which should be sent to server with post request
     this.jobForPost = {
       areaOfInterest: {
@@ -138,14 +143,14 @@ export class JobNewComponent implements OnInit {
       },
       created: '',
       description: this.signupForm.value.jobDescription,
-      execution: {
+/*       execution: {
         event: {
-          eventType: this.signupForm.value.eventType //'SingleJobExecutionEvent'
+          // eventType: this.signupForm.value.eventType //'SingleJobExecutionEvent'
         },
         pattern: this.signupForm.value.pattern,
         startAt: timeFormatted
-
-      },
+      }, */
+      execution: executionObject,
       id: '',
       inputs: inputArray,
       name: this.signupForm.value.jobName,
@@ -159,9 +164,21 @@ export class JobNewComponent implements OnInit {
         duration: this.signupForm.value.duration,
       },
       useCase: this.signupForm.value.useCase,
+
     };
-    console.log(this.jobForPost);
+    // console.log(this.jobForPost);
+
+    /* const cronResult = cron(this.signupForm.value.pattern);
+    if (cronResult.isValid()) {
+      console.log('okay');
+      // !cronResult.isError()
+      // valid code
+}else{
+  console.log('not ok');
+} */
   }
+
+
 
 
   // Post the defined job object; post method is defined in the data service
@@ -256,6 +273,30 @@ export class JobNewComponent implements OnInit {
       const jsdate = null;
       return jsdate;
     }
+  }
+
+  /**
+   * The method creates a execution object which differs in content in dependency of the selected process planning (single job or cron job)
+   * @param signupForm is an instance of the template form object
+   * @returns Method returns an execution object
+   */
+  private setExecution(signupForm: NgForm){
+    const someV = this.createDateTimeObject(signupForm);
+    const timeFormatted = someV;
+    if (signupForm.value.eventType) {   // === 'SingleJobExecutionEvent'
+        const executionObject = {
+          event : {eventType: signupForm.value.eventType} as Event,
+          startAt: timeFormatted
+       } as Execution;
+        return executionObject;
+      }
+      else {
+        const executionObject = {
+          pattern: signupForm.value.pattern,
+          startAt: timeFormatted
+     } as Execution;
+        return executionObject;
+      }
   }
 
 }

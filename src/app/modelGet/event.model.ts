@@ -1,3 +1,3 @@
 export interface Event{
-  eventType: string;
+  eventType?: string;
 }

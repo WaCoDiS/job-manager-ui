@@ -212,7 +212,13 @@
       </div>
 
       <div *ngIf="planProcessing == 'Sofort ausführen' || planProcessing == 'Einmalige Produkterstellung' ">
-        <input type="hidden" name="eventType" id="eventType" [(ngModel)]="eventType" />
+        <input
+          type="hidden"
+          name="eventType"
+          id="eventType"
+          [(ngModel)]="eventType"
+
+          />
       </div>
 
       <!--Cronjob-->
@@ -347,7 +353,6 @@
       <button
         class="btn btn-lg btn-outline-primary"
         (click)="setJob()"
-        [disabled]="!f.valid"
       >
         <!--[disabled]="!f.valid" -->
         Job checken und abschicken

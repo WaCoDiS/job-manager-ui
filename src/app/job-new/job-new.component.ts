@@ -23,8 +23,6 @@ import { ProcessMapping } from './../processMapping.model';
 import { JobPost } from './../modelPost/JobPost.model';
 import { Event } from './../modelGet/event.model';
 
-import cron from 'cron-validate';
-
 @Component({
   selector: 'app-job-new',
   templateUrl: './job-new.component.html',
@@ -72,6 +70,7 @@ export class JobNewComponent implements OnInit {
   time = { hour: 13, minute: 30 };
 
 
+  pattern1='';
 
   constructor(
     private router: Router,
@@ -127,15 +126,16 @@ export class JobNewComponent implements OnInit {
   setJob() {
     // Get value for post request key 'productCollcetion' by applying custom method 'valueProductCollection'
     const relevantProductCollection = this.valueProductCollection(this.processMappings, this.selectedProcessingTool);
+
     // Create list of input subsets as value for post request key 'inputs' by applying custom method 'valueInputs'
     const inputArray = this.valueInputs(this.signupForm);
 
     // Create date object from input of datepicker and timepicker
     // create datetime for planned single execution
-    // const someV = this.createDateTimeObject(this.signupForm);
-    // const timeFormatted = someV;
 
+    // Set execution object
     const executionObject = this.setExecution(this.signupForm);
+
     // Set job object which should be sent to server with post request
     this.jobForPost = {
       areaOfInterest: {
@@ -167,18 +167,7 @@ export class JobNewComponent implements OnInit {
 
     };
     // console.log(this.jobForPost);
-
-    /* const cronResult = cron(this.signupForm.value.pattern);
-    if (cronResult.isValid()) {
-      console.log('okay');
-      // !cronResult.isError()
-      // valid code
-}else{
-  console.log('not ok');
-} */
   }
-
-
 
 
   // Post the defined job object; post method is defined in the data service
@@ -198,8 +187,8 @@ export class JobNewComponent implements OnInit {
 
 
 
-
   // -------------------------------------------- Custom Methods-------------------------------------------
+
 
   /**
    * The method 'valueInputs' ...
@@ -255,7 +244,7 @@ export class JobNewComponent implements OnInit {
   }
 
   /**
-   * The method create a datetime object in case the user selects a planned single process
+   * The method creates a datetime object in case the user selects a planned single process
    * @param signupForm is an instance of the template form object
    * @returns Method returns a date time object
    */
@@ -276,13 +265,13 @@ export class JobNewComponent implements OnInit {
   }
 
   /**
-   * The method creates a execution object which differs in content in dependency of the selected process planning (single job or cron job)
+   * The method creates an execution object which differs in content dependent of the selected process planning (single job or cron job)
    * @param signupForm is an instance of the template form object
    * @returns Method returns an execution object
    */
   private setExecution(signupForm: NgForm){
-    const someV = this.createDateTimeObject(signupForm);
-    const timeFormatted = someV;
+    const someTimeV = this.createDateTimeObject(signupForm);
+    const timeFormatted = someTimeV;
     if (signupForm.value.eventType) {   // === 'SingleJobExecutionEvent'
         const executionObject = {
           event : {eventType: signupForm.value.eventType} as Event,
@@ -292,7 +281,7 @@ export class JobNewComponent implements OnInit {
       }
       else {
         const executionObject = {
-          pattern: signupForm.value.pattern,
+          pattern: this.pattern1,//signupForm.value.pattern,
           startAt: timeFormatted
      } as Execution;
         return executionObject;

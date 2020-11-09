@@ -1,3 +1,4 @@
+import { TemporalCoverage } from './../../modelGet/temporalCoverage.model';
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { ProcessMapping } from './../../processMapping.model';
@@ -14,6 +15,8 @@ import { environment } from './../../../environments/environment';
 export class CopernicusSubsetComponent implements OnInit {
   // index of the process input,
   // so when a process has multiple inputobjects, the index gives information about which of the inputs you referring to
+  @ViewChild('f', { static: false }) signupForm: NgForm;
+
   @Input() index: number;
   @Input() defaultProcessID: string;
   @Input() selectedTool: string;
@@ -38,8 +41,6 @@ export class CopernicusSubsetComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-
-
   ngOnInit(): void {
     // Get instance of the process mappings json file
     this.http.get<ProcessMapping[]>(environment.processMappingsPath)
@@ -50,14 +51,15 @@ export class CopernicusSubsetComponent implements OnInit {
 
 
 
-  updateSelectedSatellite(event: any) {
-    // console.log(event);
-    this.selectedSatelliteEmit.emit(event);
-  }
+  // updateSelectedSatellite(event: any) {
+  //   // console.log(event);
+  //   this.selectedSatelliteEmit.emit(event);
+  // }
 
-  updateCloudCoverage(event: any) {
-    // console.log(event);
-    this.selectedCloudCoverageEmit.emit(event);
-  }
+  // updateCloudCoverage(event: any) {
+  //   // console.log(event);
+  //   this.selectedCloudCoverageEmit.emit(event);
+  // }
+
 
 }

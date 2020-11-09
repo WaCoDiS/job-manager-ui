@@ -33,7 +33,6 @@
       name="satellite"
       required
       #satellite="ngModel"
-      (ngModelChange)="updateSelectedSatellite($event)"
     >
       <option selected></option>
       <option value="sentinel-1">Sentinel-1</option>
@@ -52,7 +51,6 @@
   </div>
 
   <!--maximum Cloud Coverage -->
-  <!--TODO Only If sentinel-2 -->
   <div *ngIf="selectedSatellite === 'sentinel-2'">
     <label
       >maximale Wolkenbedeckung in % <span style="color: red;">*</span>
@@ -72,17 +70,51 @@
         required
         #cloudCoverage="ngModel"
       />
-      <!--(ngModelChange)= "updateCloudCoverage($event)"-->
     </div>
   </div>
 
-  <input *ngIf="selectedSatellite === 'sentinel-1'"
-  type="hidden"
-  name="maximumCloudCoverage"
-  id="cloudCoverage"
-  [(ngModel)]="cloudCoverage"
-/>
+  <input
+    *ngIf="selectedSatellite === 'sentinel-1'"
+    type="hidden"
+    name="maximumCloudCoverage"
+    id="cloudCoverage"
+    [(ngModel)]="cloudCoverage"
+  />
 
+  <br>
+
+  <!-- Temporal Coverage: Duration -->
+  <div class="form-group">
+    <label for="duration"
+      >Zeitabdeckung <span style="color: gray;">optional</span>
+    </label>
+    <input
+      style="max-width: 350px;"
+      class="form-control"
+      id="duration"
+      placeholder="z.B. P3M"
+      ngModel
+      name="duration"
+      #duration="ngModel"
+    />
+  </div>
+
+  <!-- Temporal Coverage: Offset -->
+  <div class="form-group">
+    <label for="offset"
+      >Startzeit
+      <span style="color: gray;">optional</span></label>
+    <input
+      style="max-width: 350px;"
+      class="form-control"
+      id="offset"
+      placeholder="z.B. P6M"
+      ngModel
+      name="offset"
+    />
+  </div>
+
+  <br />
 
 
   <!--instrument-->

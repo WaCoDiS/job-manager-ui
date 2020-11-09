@@ -1,15 +1,28 @@
+import { TemporalCoverage } from './temporalCoverage.model';
+
+
 // Single interface with optional attributes.
 export interface Input {
+
+  // both definitions contain id and sourceType
   identifier: string;
   sourceType: string;
+
+  // Both definitions contain an optional attribute 'temporal coverage'
+  temporalCoverage?: TemporalCoverage;
 
   // StaticSubsetDefinition
   dataType?: string;
   value?: string;
 
   // CopernicusSubsetDefinition
-  maximumCloudCoverage?: number;
   satellite?: string;
+  productType?: string;
+  //  if Sentinel 1
+  sensorMode?: string;
+  // if Sentinel 2
+  maximumCloudCoverage?: number;
+
 }
 
 

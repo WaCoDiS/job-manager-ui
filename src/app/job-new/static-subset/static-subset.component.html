@@ -16,6 +16,7 @@
   <!--dataType is set to 'text' per default -->
   <input type="hidden" name="dataType" id="dataType" [(ngModel)]="dataType" />
 
+
   <!--Value-->
   <div class="form-group">
     <div *ngFor="let process of processMappings">
@@ -27,33 +28,6 @@
       </div>
     </div>
 
-    <!-- <span *ngIf="!value.valid" for="value"> ; else blackValue -->
-
-    <!--     <label *ngIf="defaultProcessID == 'REFERENCE_DATA'" for="value"
-      >Layer <span style="color: red;">*</span></label
-    >
-    <label *ngIf="defaultProcessID == 'AREA_OF_INTEREST'" for="value"
-      >Koordinaten des Observationsgebiet
-      <span style="color: red;">*</span></label
-    >
-    <label *ngIf="defaultProcessID == 'MASKING_DATA'" for="value"
-      >Maske <span style="color: red;">*</span></label
-    > -->
-
-    <!-- </span> -->
-    <!--     <ng-template #blackValue>
-      <span>
-        <label *ngIf="defaultProcessID == 'REFERENCE_DATA'" for="value"
-          >Layer</label
-        >
-        <label *ngIf="defaultProcessID == 'AREA_OF_INTEREST'" for="value"
-          >Koordinaten des Observationsgebiet</label
-        >
-        <label *ngIf="defaultProcessID == 'MASKING_DATA'" for="value"
-          >Maske</label
-        >
-      </span>
-    </ng-template> -->
 
     <input
       style="max-width: 300px;"
@@ -73,23 +47,39 @@
         </small>
       </div>
     </div>
-
-    <!--     <small
-      id="Help"
-      class="form-text text-muted"
-    >
-      Gib hier die URL eines Vektorlayer eines WFS (Web Feature Service) ein
-    </small> -->
-
-    <!--     <small
-      *ngIf="defaultProcessID == 'AREA_OF_INTEREST'"
-      id="Help"
-      class="form-text text-muted"
-    >
-      Eingabereihenfolge: min Longitude, min Latitude, max Longitude, max
-      Latitude.
-    </small> -->
   </div>
+
+    <!-- Temporal Coverage: Duration -->
+    <div class="form-group">
+      <label for="duration"
+        >Zeitabdeckung <span style="color: gray;">optional</span>
+      </label>
+      <input
+        style="max-width: 350px;"
+        class="form-control"
+        id="duration"
+        placeholder="z.B. P3M"
+        ngModel
+        name="duration"
+        #duration="ngModel"
+      />
+    </div>
+
+    <!-- Temporal Coverage: Offset -->
+    <div class="form-group">
+      <label for="offset"
+        >Startzeit
+        <span style="color: gray;">optional</span></label>
+      <input
+        style="max-width: 350px;"
+        class="form-control"
+        id="offset"
+        placeholder="z.B. P6M"
+        ngModel
+        name="offset"
+      />
+    </div>
+
 </fieldset>
 
 <!------------------This may become handy -------------------------->

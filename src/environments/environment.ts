@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  wacodisAPI: 'http://localhost:8080/wacodis-job-definition-api/jobDefinitions', //
+  wacodisAPI: 'http://localhost:8080/wacodis-job-definition-api/jobDefinitions',
   processMappingsPath: 'assets/processMappings.json'
 };
 
@@ -16,3 +16,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+

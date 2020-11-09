@@ -80,7 +80,9 @@
             <p *ngIf="job.useCase">
               <b>Verwendungszweck</b> <br />{{ job.useCase }}
             </p>
-            <p><b>Status</b> <br />{{ job.status }}</p>
+            <p>
+              <b>Status</b> <br />{{ job.status }}
+            </p>
             <p *ngIf="job.execution.pattern">
               <b>Ausführungsmuster (cron Format)</b><br />{{
                 job.execution.pattern
@@ -93,11 +95,17 @@
               </p>
             </div>
 
-            <p *ngIf="job.temporalCoverage.duration">
+            <p>
               <b>Zeitliche Abdeckung (ISO 8601)</b><br />{{
                 job.temporalCoverage.duration
               }}
             </p>
+            <p *ngIf="job.temporalCoverage.offset">
+              <b>Startzeit (ISO 8601)</b><br />{{
+                job.temporalCoverage.offset
+              }}
+            </p>
+
             <br />
             <!--Eingabedaten-->
             <div>
@@ -114,6 +122,23 @@
                     <br />
                     {{ input.value }}
                   </p>
+                  <div *ngIf="input.temporalCoverage">
+                    <p *ngIf="input.temporalCoverage.duration">
+                      <span style="font-weight: bold;">
+                        Zeitabdeckung:
+                      </span>
+                      <br />
+                      {{ input.temporalCoverage.duration }}
+                    </p>
+                    <p *ngIf="input.temporalCoverage.offset">
+                      <span style="font-weight: bold;">
+                        Startzeit:
+                      </span>
+                      <br />
+                      {{ input.temporalCoverage.offset }}
+                    </p>
+                  </div>
+
                 </div>
 
                 <!--Copernicus Input-->
@@ -128,13 +153,33 @@
                   </p>
 
                   <!--max cloud coverage-->
-                  <p *ngIf="input.satellite == 'sentinel-2'">
-                    <span style="font-weight: bold;">
-                      maximale Wolkenbedeckung (in %):
-                    </span>
-                    <br />
-                    {{ input.maximumCloudCoverage }}
-                  </p>
+                  <div *ngIf="input.satellite == 'sentinel-2'">
+                    <p>
+                      <span style="font-weight: bold;">
+                        maximale Wolkenbedeckung (in %):
+                      </span>
+                      <br />
+                      {{ input.maximumCloudCoverage }}
+                    </p>
+                  </div>
+
+                  <div *ngIf="input.temporalCoverage">
+                    <p *ngIf="input.temporalCoverage.duration">
+                      <span style="font-weight: bold;">
+                        Zeitabdeckung:
+                      </span>
+                      <br />
+                      {{ input.temporalCoverage.duration }}
+                    </p>
+                    <p *ngIf="input.temporalCoverage.offset">
+                      <span style="font-weight: bold;">
+                        Startzeit:
+                      </span>
+                      <br />
+                      {{ input.temporalCoverage.offset }}
+                    </p>
+                  </div>
+
                 </div>
 
                 <br />

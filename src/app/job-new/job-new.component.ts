@@ -1,5 +1,6 @@
+import { Input } from './../modelGet/input.model';
+import { TemporalCoverage } from './../modelGet/temporalCoverage.model';
 import { Execution } from './../modelGet/execution.model';
-
 import { DataService } from './../services/data.service';
 // import environment variables
 import { environment } from './../../environments/environment';
@@ -22,6 +23,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ProcessMapping } from './../processMapping.model';
 import { JobPost } from './../modelPost/JobPost.model';
 import { Event } from './../modelGet/event.model';
+
 
 @Component({
   selector: 'app-job-new',
@@ -47,6 +49,7 @@ export class JobNewComponent implements OnInit {
   // For Input from Copernicus Component
   receivedSatellite: Event;
   receivedCloudCoverage: Event;
+  receivedTemporalCoverage: Event;
 
   // For process planing
    planProcessing = '';
@@ -70,7 +73,7 @@ export class JobNewComponent implements OnInit {
   time = { hour: 13, minute: 30 };
 
 
-  pattern1='';
+  pattern1 = '';
 
   constructor(
     private router: Router,
@@ -89,7 +92,7 @@ export class JobNewComponent implements OnInit {
   }
 
   // Modal
-  public open(content) {
+  public open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -119,6 +122,11 @@ export class JobNewComponent implements OnInit {
     this.receivedCloudCoverage = event1;
   }
 
+  setTempCoverageInput(event: Event) {
+    const event1 = event;
+    this.receivedTemporalCoverage = event1;
+  }
+
 
 
 
@@ -136,6 +144,9 @@ export class JobNewComponent implements OnInit {
     // Set execution object
     const executionObject = this.setExecution(this.signupForm);
 
+    // Set temporal coverage object
+    const tempCovObject = this.setTemporalCoverage(this.signupForm);
+
     // Set job object which should be sent to server with post request
     this.jobForPost = {
       areaOfInterest: {
@@ -143,13 +154,6 @@ export class JobNewComponent implements OnInit {
       },
       created: '',
       description: this.signupForm.value.jobDescription,
-/*       execution: {
-        event: {
-          // eventType: this.signupForm.value.eventType //'SingleJobExecutionEvent'
-        },
-        pattern: this.signupForm.value.pattern,
-        startAt: timeFormatted
-      }, */
       execution: executionObject,
       id: '',
       inputs: inputArray,
@@ -160,13 +164,11 @@ export class JobNewComponent implements OnInit {
         maxRetries: this.signupForm.value.retryRate,
         retryDelay_Millies: this.signupForm.value.retryDelay
       },
-      temporalCoverage: {
-        duration: this.signupForm.value.duration,
-      },
+      temporalCoverage: tempCovObject,
       useCase: this.signupForm.value.useCase,
 
     };
-    // console.log(this.jobForPost);
+    console.log(this.jobForPost);
   }
 
 
@@ -196,17 +198,48 @@ export class JobNewComponent implements OnInit {
    * @returns The method returns an array of all data subsets required for the relevant process
    */
   private valueInputs(signupForm: NgForm) {
-    const inputArray = [];
+    const inputArray1 = [];
     for (const key in signupForm.value) {
       if (signupForm.value.hasOwnProperty(key)) {
         const element = signupForm.value[key];
         if (key.startsWith('input_')) {
-          inputArray.push(element);
+          inputArray1.push(element);
         }
       }
     }
-    // console.log(inputArray);
-    return inputArray;
+    const inputArray2 = [];
+    for (const array of inputArray1){
+      const newArray1 = {} as Input;
+      newArray1.sourceType = array.sourceType;
+      newArray1.identifier = array.identifier;
+
+      if (array.duration) {
+        newArray1.temporalCoverage = {} as TemporalCoverage;
+        newArray1.temporalCoverage.duration = array.duration;
+        if (array.offset !== '') {
+          newArray1.temporalCoverage.offset = array.offset;
+        }
+      }
+      if (array.sourceType === 'CopernicusSubsetDefinition'){
+        newArray1.satellite = array.satellite;
+        newArray1.productType = array.productType;
+        if (array.satellite === 'sentinel-1'){
+          newArray1.sensorMode = array.sensorMode;
+          inputArray2.push(newArray1);
+        }
+        else {
+          newArray1.maximumCloudCoverage = array.maximumCloudCoverage;
+          inputArray2.push(newArray1);
+        }
+      }
+      else {
+        newArray1.dataType = array.dataType;
+        newArray1.value = array.value;
+        inputArray2.push(newArray1);
+      }
+    }
+    // console.log(inputArray2);
+    return inputArray2;
   }
 
 
@@ -281,11 +314,30 @@ export class JobNewComponent implements OnInit {
       }
       else {
         const executionObject = {
-          pattern: this.pattern1,//signupForm.value.pattern,
+          pattern: this.pattern1, // signupForm.value.pattern,
           startAt: timeFormatted
      } as Execution;
         return executionObject;
       }
   }
-
+  /**
+   * The method creates a temporal coverage object.
+   * @param signupForm is an instance of the template form object
+   * @returns Method returns an temporal coverage object
+   */
+  private setTemporalCoverage(signupForm: NgForm){
+    if (signupForm.value.offset) {
+        const tempCovObject = {
+          duration : this.signupForm.value.duration,
+          offset: this.signupForm.value.offset
+       } as TemporalCoverage;
+        return tempCovObject;
+      }
+      else {
+        const tempCovObject = {
+          duration : this.signupForm.value.duration
+     } as TemporalCoverage;
+        return tempCovObject;
+      }
+  }
 }

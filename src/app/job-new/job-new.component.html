@@ -107,7 +107,6 @@
                       [defaultProcessID]="input.processInputId"
                       [selectedTool]="selectedProcessingTool"
                     ></app-copernicus-subset>
-                    <!--(selectedSatelliteEmit)="setSatellite($event)"  (selectedCloudCoverageEmit)="setCloudCoverage($event)"  -->
                   </ng-template>
                 </ngb-panel>
               </ngb-accordion>
@@ -116,6 +115,10 @@
           </div>
         </div>
       </div>
+      <br>
+
+      <!-- Which time period radiant from point in time of processing,  do you like to analyse -->
+
 
       <!-- Temporal Coverage: Duration -->
       <div class="form-group">
@@ -126,7 +129,7 @@
           style="max-width: 350px;"
           class="form-control"
           id="duration"
-          placeholder="z.B. P3D"
+          placeholder="z.B. P3M"
           ngModel
           required
           name="duration"
@@ -134,7 +137,7 @@
         />
         <small id="Help" class="form-text text-muted">
           Das Format der Angabe der zu analysierenden Zeitperiode entspricht dem
-          ISO 8601 Format. Wie du die Dauer angibst findest du hier:
+          ISO 8601 Format. Wie Du die Dauer angibst findest du hier:
           <a
             href="https://en.wikipedia.org/wiki/ISO_8601#Durations"
             target="_blank"
@@ -145,6 +148,37 @@
           P3M entspricht den letzten 3 Monaten (M für Englisch 'month') <br />
           P1Y entspricht dem letzten Jahr (Y für Englisch 'year') <br />
           P1Y14D enspricht dem letzten Jahr und 14 Tage (D für Englisch 'day')
+        </small>
+      </div>
+
+      <!-- Temporal Coverage: Offset -->
+      <div class="form-group">
+        <label for="offset"
+          >Startzeit
+          <span style="color: gray;">optional</span></label>
+        <input
+          style="max-width: 350px;"
+          class="form-control"
+          id="offset"
+          placeholder="z.B. P6M"
+          ngModel
+          name="offset"
+        />
+        <small id="Help" class="form-text text-muted">
+          Die Startzeit wird im gleichen Format wie die Zeitabdeckung angegeben, dem
+          ISO 8601 Format:
+          <a
+            href="https://en.wikipedia.org/wiki/ISO_8601#Durations"
+            target="_blank"
+            >ISO8601</a
+          >
+          <br />
+          Dieses Feld ermöglicht Dir, die Zeitabdeckung der zu analysierenden Daten weiter zu definieren. <br>
+          Setzt Du dieses Feld, dann wird die Zeitabdeckung berechnet ausgehend von der gesetzten Startzeit. Lässt Du dieses Feld leer wird die Zeitabdeckung berechnet ab dem Tag
+          an dem der Job ausgeführt wird.<br/>
+          Beispiel:<br>
+          Du setzt in der Zeitabdeckung 'P3M', Du möchtest also ein Quartal betrachten. <br>
+          Setzt Du hier zusätzlich z.B. P6M ('der letzten 6 Monate') so wird die Zeitabdeckung berechnet als 'die drei Monate <i>vor sechs Monaten</i>' oder auch 'das Quartal <i>vor sechs Monaten</i>'.
         </small>
       </div>
       <br />
@@ -189,7 +223,7 @@
         Die folgenden Angaben werden benötigt, um anzugeben wie eine Analyse
         ausgeführt werden soll: Sofort einmal erstellen, einmalig zu einem
         definierten Zeitpunkt, oder mehrfach in einem definierten Rhythmus.
-        Außerdem hast du hier die Möglichkeit, weitere Parameter einzugeben, wie
+        Außerdem hast Du hier die Möglichkeit, weitere Parameter einzugeben, wie
         sich das System beim Erstellen eines Jobs verhalten soll.
       </p>
 
@@ -240,7 +274,7 @@
           pattern="^([1-9]|[1-5][0-9]|60|0|all|\*)(,[1-9]|,[1-5][0-9]|,60|,0|,\*|,all)* ([1-9]|[1][0-9]|[2][0-3]|0|all|\*)(,[1-9]|,[1][0-9]|,[2][0-3]|,0|,all)* ([1-9]|[1-2][0-9]|[3][0-1]|all|\*)(,[1-9]|,[1-2][0-9]|,[3][0-1]|,all)* ([1-9]|[1][0-2]|all|\*)(,[1-9]|,[1][0-2]|,all)* ([1-6]|0|all|\*)(,[1-6]|,0|,all)*$"
         />
         <small id="Help" class="form-text text-muted">
-          Wie du einen Cronjob angibst findest du hier:
+          Wie Du einen Cronjob angibst findest Du hier:
           <a href="https://crontab.guru/" target="_blank">crontab guru</a>
         </small>
       </div>
@@ -342,7 +376,7 @@
         <h5>Ein Fehler ist aufgetreten</h5>
         <p>Status: {{ errorStatus }}</p>
         <p>
-          Hier kannst du nachsehen, was dieser Code bedeutet:
+          Hier kannst Du nachsehen, was dieser Code bedeutet:
           <a href="https://de.ryte.com/wiki/HTTP_Status_Code"
             >Codeerklärungen</a
           >
@@ -353,6 +387,7 @@
       <button
         class="btn btn-lg btn-outline-primary"
         (click)="setJob()"
+        [disabled]="!f.valid"
       >
         <!--[disabled]="!f.valid" -->
         Job checken und abschicken
@@ -410,6 +445,12 @@
             {{ jobForPost.temporalCoverage.duration }}
           </p>
 
+          <!--Startzeit-->
+          <p *ngIf="jobForPost.temporalCoverage.offset">
+            <b>Startzeit: </b> <br />
+            {{ jobForPost.temporalCoverage.offset }}
+          </p>
+
           <!--Process planning-->
           <p>
             <b> Analyseausführung:</b> <br />
@@ -428,40 +469,72 @@
           </p>
           <br />
           <hr />
+
           <!--Eingabedaten-->
           <h5>Eingabedaten:</h5>
           <div *ngFor="let input of jobForPost.inputs; let i = index">
             <h5 style="background-color: #e3ecf6; color: #4d80bd;">
               {{ input.sourceType }}
             </h5>
+
+
             <!--Static Subset-->
             <div *ngIf="input.sourceType == 'StaticSubsetDefinition'">
               <p>
                 Eingabewert (Koordinaten oder URL): <br />
                 {{ input.value }}
               </p>
+              <div *ngIf="input.temporalCoverage">
+                <p *ngIf="input.temporalCoverage.duration">
+                  <b>Zeitabdeckung</b> (optional) : <br />
+                  {{ input.temporalCoverage.duration }}
+                </p>
+                <p *ngIf="input.temporalCoverage.offset">
+                  <b>Startzeit</b> (optional) : <br />
+                  {{ input.temporalCoverage.offset }}
+                </p>
+              </div>
+
             </div>
 
             <!--Copernicus-->
             <div *ngIf="input.sourceType == 'CopernicusSubsetDefinition'">
+            <!--Satellit-->
               <p>
                 <b>Satellit: </b> <br />
                 {{ input.satellite }}
               </p>
-              <p *ngIf="input.satellite == 'sentinel-2'">
-                <b>maximale Wolkenbedeckung (%):</b> <br />
-                {{ input.maximumCloudCoverage }}
-              </p>
-              <p *ngIf="input.sensorMode">
-                <b>Sensor Mode </b> (optional): <br />
-                {{ input.sensorMode }}
-              </p>
+              <div *ngIf="input.satellite == 'sentinel-2'">
+                <p>
+                  <b>maximale Wolkenbedeckung (%):</b> <br />
+                  {{ input.maximumCloudCoverage }}
+                </p>
+              </div>
+              <div *ngIf="input.satellite == 'sentinel-1'">
+                <p *ngIf="input.sensorMode">
+                  <b>Sensor Mode </b> (optional): <br />
+                  {{ input.sensorMode }}
+                </p>
+              </div>
+              <div *ngIf="input.temporalCoverage">
+                <p *ngIf="input.temporalCoverage.duration">
+                  <b>Zeitabdeckung</b> (optional) : <br />
+                  {{ input.temporalCoverage.duration }}
+                </p>
+                <p *ngIf="input.temporalCoverage.offset">
+                  <b>Startzeit</b> (optional) : <br />
+                  {{ input.temporalCoverage.offset }}
+                </p>
+              </div>
+
               <p *ngIf="input.productType">
                 <b>Produkttyp</b> (optional) : <br />
                 {{ input.productType }}
               </p>
+
               <br />
             </div>
+
           </div>
         </div>
         <div class="modal-footer">

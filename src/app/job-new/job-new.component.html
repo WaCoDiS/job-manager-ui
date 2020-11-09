@@ -154,7 +154,7 @@
       <!-- Temporal Coverage: Offset -->
       <div class="form-group">
         <label for="offset"
-          >Startzeit
+          >Zeitversatz
           <span style="color: gray;">optional</span></label>
         <input
           style="max-width: 350px;"
@@ -165,7 +165,7 @@
           name="offset"
         />
         <small id="Help" class="form-text text-muted">
-          Die Startzeit wird im gleichen Format wie die Zeitabdeckung angegeben, dem
+          Der Zeitversatz wird im gleichen Format wie die Zeitabdeckung angegeben, dem
           ISO 8601 Format:
           <a
             href="https://en.wikipedia.org/wiki/ISO_8601#Durations"
@@ -174,7 +174,7 @@
           >
           <br />
           Dieses Feld ermöglicht Dir, die Zeitabdeckung der zu analysierenden Daten weiter zu definieren. <br>
-          Setzt Du dieses Feld, dann wird die Zeitabdeckung berechnet ausgehend von der gesetzten Startzeit. Lässt Du dieses Feld leer wird die Zeitabdeckung berechnet ab dem Tag
+          Setzt Du dieses Feld, dann wird die Zeitabdeckung berechnet ausgehend vom gesetzten Zeitversatz. Lässt Du dieses Feld leer wird die Zeitabdeckung berechnet ab dem Tag
           an dem der Job ausgeführt wird.<br/>
           Beispiel:<br>
           Du setzt in der Zeitabdeckung 'P3M', Du möchtest also ein Quartal betrachten. <br>
@@ -445,9 +445,9 @@
             {{ jobForPost.temporalCoverage.duration }}
           </p>
 
-          <!--Startzeit-->
+          <!--Zeitversatz-->
           <p *ngIf="jobForPost.temporalCoverage.offset">
-            <b>Startzeit: </b> <br />
+            <b>Zeitversatz: </b> <br />
             {{ jobForPost.temporalCoverage.offset }}
           </p>
 
@@ -477,7 +477,6 @@
               {{ input.sourceType }}
             </h5>
 
-
             <!--Static Subset-->
             <div *ngIf="input.sourceType == 'StaticSubsetDefinition'">
               <p>
@@ -490,11 +489,10 @@
                   {{ input.temporalCoverage.duration }}
                 </p>
                 <p *ngIf="input.temporalCoverage.offset">
-                  <b>Startzeit</b> (optional) : <br />
+                  <b>Zeitversatz</b> (optional) : <br />
                   {{ input.temporalCoverage.offset }}
                 </p>
               </div>
-
             </div>
 
             <!--Copernicus-->
@@ -522,7 +520,7 @@
                   {{ input.temporalCoverage.duration }}
                 </p>
                 <p *ngIf="input.temporalCoverage.offset">
-                  <b>Startzeit</b> (optional) : <br />
+                  <b>Zeitversatz</b> (optional) : <br />
                   {{ input.temporalCoverage.offset }}
                 </p>
               </div>

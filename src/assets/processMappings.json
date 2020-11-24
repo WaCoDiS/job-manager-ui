@@ -2,7 +2,7 @@
     {
         "processId": "de.hsbo.wacodis.forest_vitality_change",
         "name": "Änderung der Flächenvitalität (z.B. von Grünlandflächen)",
-        "description": "Berechnet die Vitalitätsänderung von Flächen zu zwischen zwei verschiedenen Zeitpunkten. Als Ergebnis wird ein Rasterdatensatz generiert, dessen Rasterzellwerte die Vitalitätsänderung wiedergeben.",
+        "description": "Berechnet die Vitalitätsänderung von Flächen zwischen zwei verschiedenen Zeitpunkten. Als Ergebnis wird ein Rasterdatensatz generiert, dessen Rasterzellwerte die Vitalitätsänderung wiedergeben.",
         "productCollection": [
             "forest-vitality-change"
         ],

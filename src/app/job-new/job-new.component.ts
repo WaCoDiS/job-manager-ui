@@ -166,7 +166,9 @@ export class JobNewComponent implements OnInit {
       },
       temporalCoverage: tempCovObject,
       useCase: this.signupForm.value.useCase,
-
+      executionSettings: {
+        executionMode: 'all'
+      }
     };
     console.log(this.jobForPost);
   }

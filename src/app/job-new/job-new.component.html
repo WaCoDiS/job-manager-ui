@@ -84,7 +84,9 @@
       <div class="form-group">
         <div *ngFor="let process of processMappings">
           <div *ngIf="process.processId === selectedProcessingTool">
-            <br />
+            <small id="Help" class="form-text text-muted">{{ process.description}}</small>
+            <br>
+            <br>
             <p>Definiere die Eingabedaten</p>
 
             <div *ngFor="let input of process.inputs; let i = index">
@@ -254,7 +256,7 @@
           />
       </div>
 
-      <!--Cronjob-->
+      <!--Cronjob; the pattern is validated via regex definition-->
       <div
         class="form-group"
         *ngIf="planProcessing == 'Regelmäßige Produkterstellung'"

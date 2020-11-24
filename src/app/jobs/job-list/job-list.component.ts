@@ -48,6 +48,8 @@ export class JobListComponent implements OnInit {
         console.log(error);
       }); */
 
+
+    // Fetches first page from server
       this.dataService.getPage(this.page)
       .subscribe((jobs) => {
         // console.log('new page:' + event);

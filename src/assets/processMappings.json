@@ -10,19 +10,27 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES_1",
-                "label": "Optische Satellitenszene (1. Zeitpunkt)"
+                "label": "Optische Satellitenszene (1. Zeitpunkt)",
+                "parameters": {
+                    "satellite": "sentinel-2",
+                    "productType": "L2A"
+                }
             },
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES_2",
-                "label": "Optische Satellitenszene (2. Zeitpunkt)"
+                "label": "Optische Satellitenszene (2. Zeitpunkt)",
+                "parameters": {
+                    "satellite": "sentinel-2",
+                    "productType": "L2A"
+                }
             },
             {
               "inputType": "StaticSubsetDefinition",
               "processInputId": "MASKING_DATA",
               "label": "Maske",
               "hint": "URL eines WFS, der Polygone zum Maskieren von Flächen enthält"
-          }
+            }
         ],
         "outputs": [
             {
@@ -42,7 +50,10 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
-                "label": "Optische Satellitenszene"
+                "label": "Optische Satellitenszene",
+                "parameters": {
+                    "satellite": "sentinel-2"
+                }
             },
             {
                 "inputType": "StaticSubsetDefinition",
@@ -69,7 +80,10 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
-                "label": "Optische Satellitenszene"
+                "label": "Optische Satellitenszene",
+                "parameters": {
+                    "satellite": "sentinel-2"
+                }
             },
             {
                 "inputType": "StaticSubsetDefinition",
@@ -90,7 +104,10 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
-                "label": "Optische Satellitenszene"
+                "label": "Optische Satellitenszene",
+                "parameters": {
+                    "satellite": "sentinel-2"
+                }
             }
         ]
     },
@@ -105,7 +122,10 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
-                "label": "Optische Satellitenszene"
+                "label": "Optische Satellitenszene",
+                "parameters": {
+                    "satellite": "sentinel-2"
+                }
             }
         ]
     },
@@ -120,7 +140,10 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "SENTINEL_2_IMAGE_SOURCE",
-                "label": "Optische Satellitenszene"
+                "label": "Optische Satellitenszene",
+                "parameters": {
+                    "satellite": "sentinel-2"
+                }
             }
         ]
     },
@@ -135,7 +158,10 @@
             {
                 "inputType": "CopernicusSubsetDefinition",
                 "processInputId": "SENTINEL_2_IMAGE_SOURCE",
-                "label": "Optische Satellitenszene"
+                "label": "Optische Satellitenszene",
+                "parameters": {
+                    "satellite": "sentinel-2"
+                }
             }
         ]
     }

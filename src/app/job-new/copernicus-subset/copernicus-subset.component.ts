@@ -25,12 +25,13 @@ export class CopernicusSubsetComponent implements OnInit {
   @Output() selectedCloudCoverageEmit: EventEmitter<number> = new EventEmitter();
 
   selectedSatellite = '';
+  productType='';
+
 
   sourceType = 'CopernicusSubsetDefinition';
-
   cloudCoverage = 0;
 
-  productType: string;
+  // productType: string;
 
   // processMappings: empty instance for processMappings which later holds the processMappings.json
   processMappings: ProcessMapping[] = [];
@@ -46,7 +47,10 @@ export class CopernicusSubsetComponent implements OnInit {
     this.http.get<ProcessMapping[]>(environment.processMappingsPath)
       .subscribe(data => {
         this.processMappings = data;
+        console.log(this.processMappings[this.index].inputs)
       });
+
+
   }
 
 

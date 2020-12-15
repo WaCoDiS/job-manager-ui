@@ -9,7 +9,11 @@ export interface ProcessMapping {
         inputType: string,
         processInputId: string,
         label: string,
-        hint: string
+        hint: string,
+        parameters:{
+          satellite:string,
+          productType:string
+        }
       }
     ];
 }

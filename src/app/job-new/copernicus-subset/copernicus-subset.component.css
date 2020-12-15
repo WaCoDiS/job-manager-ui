@@ -10,3 +10,11 @@ label {
   font-weight: bold;
 
 }
+
+/*Hiding an element can be done by setting the display property to none.
+The element will be hidden, and the page will be displayed as if the element is not there:
+Example.
+*/
+#defaultV {
+  display: none;
+}

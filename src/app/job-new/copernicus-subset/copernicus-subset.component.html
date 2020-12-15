@@ -23,6 +23,8 @@
           {{process.inputs[index].label}}
           <span style="color: red;">*</span>
         </label>
+<!--         <p id="defaultV" #defaultValueSatellite >{{process.inputs[index].parameters.satellite}}</p>
+        <p id="defaultV" #defaultValueProductType>{{process.inputs[index].parameters.productType}}</p> -->
       </div>
     </div>
     <select
@@ -37,7 +39,6 @@
       <option selected></option>
       <option value="sentinel-1">Sentinel-1</option>
       <option value="sentinel-2">Sentinel-2</option>
-      <!-- <option value="sentinel-3">Sentinel-3</option> -->
     </select>
 
     <!--Give a short explanation on the required input data below the input field, this information is from the processMappings.json-->

@@ -39,8 +39,8 @@ export class CopernicusSubsetComponent implements OnInit {
     // console.log('value of p: ', this.value) // value of p: Dynamic value
   //}
 
-  @ViewChild('defaultValueSatellite', { static: false }) defaultSatellite: ElementRef<HTMLElement>;
-  @ViewChild('defaultValueProductType', { static: false }) defaultProductType: ElementRef<HTMLElement>;
+  // @ViewChild('defaultValueSatellite', { static: false }) defaultSatellite: ElementRef<HTMLElement>;
+  // @ViewChild('defaultValueProductType', { static: false }) defaultProductType: ElementRef<HTMLElement>;
 
   @Input() index: number;
   @Input() defaultProcessID: string;
@@ -78,8 +78,6 @@ export class CopernicusSubsetComponent implements OnInit {
 
 
   }
-
-
 
   // updateSelectedSatellite(event: any) {
   //   // console.log(event);

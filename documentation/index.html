@@ -1,0 +1,227 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular-wacodis-job-scheduler documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">angular-wacodis-job-scheduler documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="angularwacodisjobscheduler">AngularWacodisJobScheduler</h1>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 9.1.0.</p>
+<h2 id="development-server">Development server</h2>
+<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+<h2 id="code-scaffolding">Code scaffolding</h2>
+<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+<h2 id="build">Build</h2>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h2 id="running-unit-tests">Running unit tests</h2>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h2 id="running-end-to-end-tests">Running end-to-end tests</h2>
+<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<h2 id="further-help">Further help</h2>
+<p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a>.</p>
+<h1 id="wacodis-metadata-connector">WaCoDiS Metadata Connector</h1>
+<p><img src="https://github.com/WaCoDiS/metadata-connector/workflows/Java%20CI/badge.svg" alt="Java CI" class="img-responsive"></p>
+<p>The WaCoDiS Metadata Connector component provides routines for handling DataEnvelope creation events in order to connect 
+to the DataAccess API for creating new metadata resources.</p>
+<p><strong>Table of Content</strong><br>TODO  </p>
+<h2 id="wacodis-project-information">WaCoDiS Project Information</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/WaCoDiS/apis-and-workflows/master/misc/logos/wacodis.png" width="200">
+</p>
+Climate changes and the ongoing intensification of agriculture effect in increased material inputs in watercourses and dams.
+Thus, water industry associations, suppliers and municipalities face new challenges. To ensure an efficient and environmentally
+friendly water supply for the future, adjustments on changing conditions are necessary. Hence, the research project WaCoDiS
+aims to geo-locate and quantify material outputs from agricultural areas and to optimize models for sediment and material
+inputs (nutrient contamination) into watercourses and dams. Therefore, approaches for combining heterogeneous data sources,
+existing interoperable web based information systems and innovative domain oriented models will be explored.
+
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>For a detailed overview about the WaCoDiS system architecture please visit the 
+<strong><a href="https://github.com/WaCoDiS/core-engine">WaCoDiS Core Engine</a></strong> repository.  </p>
+<h2 id="overview">Overview</h2>
+<p>The WaCoDiS Job Manager UI allows the management and scheduling of jobs,<br>The WaCoDiS Metadata Connector is an intermediate component with the scope to handle asynchronous DataEnvelope creation
+events in order to interact with the DataAccess API for creating new metadata resources. Therefore, the Metadata Connector
+subscribes for DataEnvelope creation messages at a message broker which are published by the 
+<strong><a href="https://github.com/WaCoDiS/datasource-observer">Datasource Observer</a></strong> if new required datasets are found. Following,
+the Metadata Connector checks whether metadata for the found datasets have been already registered at the 
+<strong><a href="https://github.com/WaCoDiS/data-access-api">Data Access API</a></strong> or not and creates or updates corresponding metadata
+information.</p>
+<h3 id="modules">Modules</h3>
+<p>The WaCoDiS Metadata Connector comprises three Maven modules:</p>
+<ul>
+<li><strong>WaCoDiS Metadata Connector Models</strong><br>This module contains Java classes that reflect the basic data model. This includes the data types specified with OpenAPI
+in the WaCoDiS apis-and workflows repository. All model classes were generated by the OpenAPI Generator, which is integrated
+and can be used as Maven Plugin within this module.  </li>
+<li><strong>WaCoDiS Metadata Listener</strong><br>This module is responsible for the message broker subscription as well as the interconnection to the Data Access API.
+In addition, for each DataEnvelope type it contains a separate metadata update strategy.  </li>
+<li><strong>WaCoDiS Metadata Connector App</strong> 
+Since WaCoDiS Metadata Connector is implemented as Spring Boot application, the App module provides the application runner
+as well as default externalized configurations.<h3 id="technologiesdependencies">Technologies/Dependencies</h3>
+angular
+bootstrap</li>
+</ul>
+<h2 id="installation--building-information">Installation / Building Information</h2>
+<h3 id="build-from-source">Build from Source</h3>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h3 id="build-with-docker">Build with Docker</h3>
+<p>TODO Docker run</p>
+<h3 id="configuration">Configuration</h3>
+<p>To use the API on your local system you will need to configure the angular app accordingly. </p>
+<h4 id="parameters">Parameters</h4>
+<p>To use the locally installed API components, in the file environment.ts, set the parameter &#39;wacodisAPI&#39; to the relevant URL, which is generally &#39;<a href="http://localhost:8080/wacodis-job-definition-api/jobDefinitions&#39;">http://localhost:8080/wacodis-job-definition-api/jobDefinitions&#39;</a>.</p>
+<p>To submit or request jobs, have a look into the file &#39;processMappings.json&#39;. Here, you will find an overview of definition of job objects.</p>
+<h3 id="deployment">Deployment</h3>
+<p>TODO
+This section describes deployment scenarios, options and preconditions.
+Start the locally configured job definition api --&gt; anpassen</p>
+<h2 id="user-guide">User Guide</h2>
+<p>TODO
+Describe how to run and use this component --&gt; verweise an die job definition api seite</p>
+<h2 id="contribution---developer-information">Contribution - Developer Information</h2>
+<p>This section contains information for developers.</p>
+<h3 id="how-to-contribute">How to Contribute</h3>
+<p>TODO
+Describe how to extend this module</p>
+<h3 id="branching">Branching</h3>
+<p>The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of development.</p>
+<h3 id="license-and-third-party-lib-pom-plugins">License and Third Party Lib POM Plugins</h3>
+<p>[optional]</p>
+<h2 id="contact">Contact</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="center">Organization</th>
+<th align="center">Mail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Sebastian Drost</td>
+<td align="center">Bochum University of Applied Sciences</td>
+<td align="center"><a href="mailto:sebastian.drost@hs-bochum.de">sebastian.drost@hs-bochum.de</a></td>
+</tr>
+<tr>
+<td align="center">Arne Vogt</td>
+<td align="center">Bochum University of Applied Sciences</td>
+<td align="center"><a href="mailto:arne.vogt@hs-bochum.de">arne.vogt@hs-bochum.de</a></td>
+</tr>
+<tr>
+<td align="center">Andreas Wytzisk</td>
+<td align="center">Bochum University of Applied Sciences</td>
+<td align="center"><a href="mailto:andreas.wytzisk@hs-bochum.de">andreas.wytzisk@hs-bochum.de</a></td>
+</tr>
+<tr>
+<td align="center">Matthes Rieke</td>
+<td align="center">52° North GmbH</td>
+<td align="center"><a href="mailto:m.rieke@52north.org">m.rieke@52north.org</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="credits-and-contributing-organizations">Credits and Contributing Organizations</h2>
+<ul>
+<li>Department of Geodesy, Bochum University of Applied Sciences, Bochum</li>
+<li>52° North Initiative for Geospatial Open Source Software GmbH, Münster</li>
+<li>Wupperverband, Wuppertal</li>
+<li>EFTAS Fernerkundung Technologietransfer GmbH, Münster</li>
+</ul>
+<p>The research project WaCoDiS is funded by the BMVI as part of the <a href="https://www.bmvi.de/DE/Themen/Digitales/mFund/Ueberblick/ueberblick.html">mFund programme</a>  </p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/WaCoDiS/apis-and-workflows/master/misc/logos/mfund.jpg" height="100">
+  <img src="https://raw.githubusercontent.com/WaCoDiS/apis-and-workflows/master/misc/logos/bmvi.jpg" height="100">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

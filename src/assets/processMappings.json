@@ -70,6 +70,54 @@
         ]
     },
     {
+        "processId": "de.hsbo.wacodis.detailed_land_cover_classification",
+        "name": "Detaillierte Landbedeckungsklassifikation",
+        "description": "Erstellt eine detaillierte Landbedeckungsklassifikation aus einer Satellitenbildszene anhand von bereitgestellten Trainingstdaten. Die Rasterzellwerte des generierten Rasterdatensatzes zeigen die detaillierten Landbedeckungsklassen an.",
+        "productCollection": [
+            "detailed-land-cover-classification"
+        ],
+        "inputs": [
+            {
+                "inputType": "CopernicusSubsetDefinition",
+                "processInputId": "OPTICAL_IMAGES_SOURCES",
+                "label": "Optische Satellitenszene",
+                "parameters": {
+                    "satellite": "sentinel-2"
+                }
+            },
+            {
+                "inputType": "StaticSubsetDefinition",
+                "processInputId": "AREA_OF_INTEREST",
+                "label": "Observationsgebiet",
+                "hint": "Koordinaten der Bounding Box im EPSG:4326. Schema: [minLon, minLat, maxLon, maxLat]"
+            },
+            {
+                "inputType": "StaticSubsetDefinition",
+                "processInputId": "REFERENCE_DATA",
+                "label": "Referenzdaten",
+                "hint": "URL eines WFS, der die Trainingsdaten für die Klassifikation bereitstellt"
+            },
+            {
+                "inputType": "StaticSubsetDefinition",
+                "processInputId": "ATKIS_WATER_DATA",
+                "label": "Wasserflächen",
+                "hint": "URL eines WFS, der Wasserflächen bereitstellt"
+            },
+            {
+                "inputType": "StaticSubsetDefinition",
+                "processInputId": "ATKIS_INDUSTRY_DATA ",
+                "label": "Industrieflächen",
+                "hint": "URL eines WFS, der Industrieflächen bereitstellt"
+            },
+            {
+                "inputType": "StaticSubsetDefinition",
+                "processInputId": "ELEVATION_DATA",
+                "label": "Höhendaten",
+                "hint": "URL eines WCS, der Höhendaten bereitstellt"
+            }
+        ]
+    },
+    {
         "processId": "de.hsbo.wacodis.sealing_factor",
         "name": "Versiegelungsgrad",
         "description": "Ermittlung des Versiegelungsgrad von Flächen aus einer Satellitenbildszene. Der Versiegelungsgrad wird ausgewählte (maskierte) Flächen berechnet. Der Grad der Versiegelung wird als Rasterzellwerte in einem Ergebnisdatensatz angegeben.",
@@ -113,10 +161,10 @@
     },
     {
         "processId": "de.hsbo.wacodis.vegetation_density_ndvi",
-        "name": "Vegetationsdichte (NDVI)",
+        "name": "Demo Vegetationsdichte (NDVI)",
         "description": "Ermittlung des Vegetationsdichte als Normalized Difference Vegetation Index (NDVI) aus einer Satellitenbildszene. Der NDVI wird als Rasterzellwerte in einem Ergebnisdatensatz angegeben.",
         "productCollection": [
-            "vegetation-density-ndvi"
+            "demo-vegetation-density-ndvi"
         ],
         "inputs": [
             {
@@ -124,7 +172,8 @@
                 "processInputId": "OPTICAL_IMAGES_SOURCES",
                 "label": "Optische Satellitenszene",
                 "parameters": {
-                    "satellite": "sentinel-2"
+                    "satellite": "sentinel-2",
+                    "productType": "L2A"
                 }
             }
         ]

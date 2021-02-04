@@ -105,7 +105,7 @@
             },
             {
                 "inputType": "StaticSubsetDefinition",
-                "processInputId": "ATKIS_INDUSTRY_DATA ",
+                "processInputId": "ATKIS_INDUSTRY_DATA",
                 "label": "Industrieflächen",
                 "hint": "URL eines WFS, der Industrieflächen bereitstellt"
             },

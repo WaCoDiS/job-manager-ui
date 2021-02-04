@@ -1,7 +1,15 @@
 # WaCoDiS Job Manager UI
+User friendly web-based UI for creating processing jobs via WaCoDiS [Job Defintion API](https://github.com/WaCoDiS/job-definition-api).
 
 **Table of Content**  
-TODO  
+1. [WaCoDiS Project Information](#wacodis-project-information)
+2. [Overview](#overview) 
+3. [Installation / Building Information](#installation--building-information)
+4. [Deployment](#deployment)
+5. [User Guide](#user-guide)
+6. [Developer Information](#developer-information)
+7. [Contact](#contact)
+8. [Credits and Contributing Organizations](#credits-and-contributing-organizations)
 
 ## WaCoDiS Project Information
 <p align="center">
@@ -19,49 +27,72 @@ For a detailed overview about the WaCoDiS system architecture please visit the
 **[WaCoDiS Core Engine](https://github.com/WaCoDiS/core-engine)** repository.  
 
 ## Overview  
-The WaCoDiS Job Manager UI is a light-weight interface which facilitates the communication with the WaCoDiS backend via the WaCoDiS API (https://github.com/WaCoDiS/job-definition-api). It allows to view all scheduled jobs as well as scheduling new and the deletion of redundant jobs. 
+The WaCoDiS Job Manager UI is a light-weight interface which facilitates the communication with the WaCoDiS backend via the
+WaCoDiS [Job Defintion API](https://github.com/WaCoDiS/job-definition-api). It allows to view all scheduled jobs as well as
+scheduling new and the deletion of redundant jobs. 
 
 ### Technologies/Dependencies
-Angular: 10.2.1
-Bootstrap: 4.4.1
+* __Angular__:
+WaCoDiS Job Manager UI is implemented by the use of the web framework [Angular](https://angular.io/).
+* __Bootstrap__
+The UI style relies on the CSS framework [Bootstrap](https://getbootstrap.com/).
 
 ## Installation / Building Information
 ### Build from Source
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a
+production build.
 
 ### Build with Docker
-TODO 
-Docker run
+The repository contains a Dockerfile for building a Docker image. Just run `docker build -t wacodis/job-manager-ui .` from the
+project root to build the image.
+
+The [deployment section](#run-with-docker) provides helpful information for running the UI as Docker container.
 
 ### Configuration
-To install the backend components, follow the instructions as described here : https://github.com/WaCoDiS/job-definition-api. Once installed and configured, to use the API on your local system you will need to configure the Angular app accordingly. 
-
 #### Parameters
-To use the locally running API components, in the file environment.ts, set the parameter 'wacodisAPI' to the relevant URL, which is generally 'http://localhost:8080/wacodis-job-definition-api/jobDefinitions'. 
+Adopt the environment files inside the _src/environments/_ folder to your runtime enviroment specfic needs:
+* `production`: Indicates whether the environment file should be used in production mode or not
+* `wacodisAPI`: URL that points to the WaCoDiS Job Defintion API
+* `processMappingsPath`: Path to a process mappings file that contains definitions for supported processes. The project
+comes with a mappings file inside the _src/assets_ folder.
 
-TODO 
-To create new jobs, have a look into the file 'processMappings.json'. Here, you will get to know how how to specify job objects depending on the selected process.
+To use the locally running API components, in the file environment.ts, set the parameter 'wacodisAPI' to the relevant URL,
+which is generally 'http://localhost:8080/wacodis-job-definition-api/jobDefinitions'. 
 
-#### Development server
-Run `ng serve --open` for a dev server and opening a web browser window displaying the job manager on http://localhost:4200/jobs.
+#### Process mappings
+The WaCoDiS system supports arbitrary EO processes, whose execution will be triggered in accordance to job descriptions
+that can be created via Job Definition API. Each process has certain requirements regarding the type of inputs that will be
+used for process execution. Hence, the Job Manager UI is designed in way that enables the dynamically rendering of forms
+that take into account the characteristics of each process. To do so, you have to provide a JSON-based configuration file
+that contains process descriptions. You will find such a file inside the _src/assets_ folder. Just have a look into the
+file 'processMappings.json'. Here, you will get to know how to specify job objects depending on the selected process.
 
-### Deployment
+## Deployment
+### Dependencies
+WaCoDiS Job Manager UI serves as frontend for WaCoDiS Job Defintion API. Hence, Job Defintion API must be deployed in
+beforehand, otherwise the UI can not send API requests to it. To install the backend components, follow the instructions as
+described here: https://github.com/WaCoDiS/job-definition-api. We recommend to run the Job Definition API as Docker
+container to speed up deployment. Once installed and configured, to use the API on your local system you will need to
+configure the Angular app accordingly. 
+
+### Run with Docker
 TODO
-This section describes deployment scenarios, options and preconditions.
+
+### Run on development server
+Run `ng serve --open` for a dev server and opening a web browser window displaying the job manager on http://localhost:4200/jobs.
 
 ## User Guide
 To install the backend components, follow the instructions as described here : https://github.com/WaCoDiS/job-definition-api
 
-
-## Contribution - Developer Information
+## Developer Information
 This section contains information for developers.
 
 ### How to Contribute
 TODO
-Describe how to extend this module
 
 ### Branching
-The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of development.
+The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of
+development.
 
 ### License and Third Party Lib POM Plugins
 [optional]

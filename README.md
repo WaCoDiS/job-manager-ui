@@ -6,10 +6,9 @@ User friendly web-based UI for creating processing jobs via WaCoDiS [Job Definti
 2. [Overview](#overview) 
 3. [Installation / Building Information](#installation--building-information)
 4. [Deployment](#deployment)
-5. [User Guide](#user-guide)
-6. [Developer Information](#developer-information)
-7. [Contact](#contact)
-8. [Credits and Contributing Organizations](#credits-and-contributing-organizations)
+5. [Developer Information](#developer-information)
+6. [Contact](#contact)
+7. [Credits and Contributing Organizations](#credits-and-contributing-organizations)
 
 ## WaCoDiS Project Information
 <p align="center">

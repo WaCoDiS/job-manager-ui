@@ -36,6 +36,7 @@ scheduling new and the deletion of redundant jobs.
 WaCoDiS Job Manager UI is implemented by the use of the web framework [Angular](https://angular.io/).
 * __Bootstrap__
 The UI style relies on the CSS framework [Bootstrap](https://getbootstrap.com/).
+[ng-bootstrap](https://ng-bootstrap.github.io/#/home) is integrated for using Bootstrap components with Angular.
 
 ## Installation / Building Information
 ### Build from Source

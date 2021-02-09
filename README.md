@@ -76,19 +76,24 @@ container to speed up deployment. Once installed and configured, to use the API 
 configure the Angular app accordingly. 
 
 ### Run with Docker
-TODO
+Start the Docker container by running `docker run --rm -it --name app-job-manager-container -e PORT=80 -p 8080:80 wacodis/job-manager-ui`.
+The repository also contains a docker-compose file you can use for starting the container with `docker-compose up`.
+Subsequently, the Job Manager UI is available on http://localhost:8080/.
 
 ### Run on development server
 Run `ng serve --open` for a dev server and opening a web browser window displaying the job manager on http://localhost:4200/jobs.
-
-## User Guide
-To install the backend components, follow the instructions as described here : https://github.com/WaCoDiS/job-definition-api
 
 ## Developer Information
 This section contains information for developers.
 
 ### How to Contribute
-TODO
+WaCoDiS Job Manager UI serves as a lightweight frontend for managing processing jobs. Using the UI avoids writing complex JSON in order to create new jobs via the REST based Job Definition API. However, some useful features are still pending and listed below:
+* For convenience, different WaCoDiS job definition parameters are not supported by the Job Manager UI. E.g. this includes [execution setting parameters](https://github.com/WaCoDiS/apis-and-workflows/blob/7e6aa4e22cf57d9135f6264435b6dc52c62fef9c/openapi/src/main/definitions/wacodis-schemas.yml#L479-L504). To allow users of the UI the to make use of full potential of WaCoDiS, the UI should
+be expanded by additional form elements.
+* The area of interest for WaCoDiS Jobs has to be specified following GeoJSON bbox format [minLon, minLat, maxLon, maxLat]. Up to now, users have to look up the bounding box for an area of interest by using external applications. Embedding a map (e.g. using [Leaflet](https://leafletjs.com/)) would facilitate this workflow.
+* The same applies to specifying the cron definition for a periodic job. The UI form links to https://crontab.guru/ which can be utilized for creating a cron expression. The implementation or embedding of a cron picker widget would ease this tremendously and implies a much better user experience.
+
+Feel free to implement those features and to create a pull request or get in touch with our friendly developers.
 
 ### Branching
 The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of

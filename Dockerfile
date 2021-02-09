@@ -14,4 +14,4 @@ COPY --from=builder /app/dist/angular-wacodis-job-scheduler /usr/share/nginx/htm
 CMD sed -i -e 's/MYPORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 
 ## Run application with:
-## docker run --rm -i -t --name app-job-manager-container -e PORT=80 -p 8080:80 app-job-manager
+## docker run --rm -it --name app-job-manager-container -e PORT=80 -p 8080:80 wacodis/job-manager-ui

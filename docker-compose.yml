@@ -1,0 +1,9 @@
+version: '3'
+services:
+  job-manager-ui:
+    build: .
+    image: wacodis/job-manager-ui:latest
+    ports:
+      - 8080:80
+    environment:
+      PORT: 80

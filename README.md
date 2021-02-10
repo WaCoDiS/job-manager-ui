@@ -50,13 +50,13 @@ The [deployment section](#run-with-docker) provides helpful information for runn
 
 ### Configuration
 #### Parameters
-Adopt the environment files inside the _src/environments/_ folder to your runtime enviroment specfic needs:
+Adopt the environment files inside the _src/environments/_ folder to your runtime environment specific needs:
 * `production`: Indicates whether the environment file should be used in production mode or not
 * `wacodisAPI`: URL that points to the WaCoDiS Job Defintion API
 * `processMappingsPath`: Path to a process mappings file that contains definitions for supported processes. The project
 comes with a mappings file inside the _src/assets_ folder.
 
-To use the locally running API components, in the file environment.ts, set the parameter 'wacodisAPI' to the relevant URL,
+To use the locally running API components, in the file environment.ts, set the parameter `wacodisAPI` to the relevant URL,
 which is generally 'http://localhost:8080/wacodis-job-definition-api/jobDefinitions'. 
 
 #### Process mappings
@@ -87,13 +87,14 @@ Run `ng serve --open` for a dev server and opening a web browser window displayi
 This section contains information for developers.
 
 ### How to Contribute
+Feel free to implement missing features by creating a pull request or get in touch with our friendly developers.
+
+### Pending features
 WaCoDiS Job Manager UI serves as a lightweight frontend for managing processing jobs. Using the UI avoids writing complex JSON in order to create new jobs via the REST based Job Definition API. However, some useful features are still pending and listed below:
 * For convenience, different WaCoDiS job definition parameters are not supported by the Job Manager UI. E.g. this includes [execution setting parameters](https://github.com/WaCoDiS/apis-and-workflows/blob/7e6aa4e22cf57d9135f6264435b6dc52c62fef9c/openapi/src/main/definitions/wacodis-schemas.yml#L479-L504). To allow users of the UI the to make use of full potential of WaCoDiS, the UI should
 be expanded by additional form elements.
 * The area of interest for WaCoDiS Jobs has to be specified following GeoJSON bbox format [minLon, minLat, maxLon, maxLat]. Up to now, users have to look up the bounding box for an area of interest by using external applications. Embedding a map (e.g. using [Leaflet](https://leafletjs.com/)) would facilitate this workflow.
 * The same applies to specifying the cron definition for a periodic job. The UI form links to https://crontab.guru/ which can be utilized for creating a cron expression. The implementation or embedding of a cron picker widget would ease this tremendously and implies a much better user experience.
-
-Feel free to implement those features and to create a pull request or get in touch with our friendly developers.
 
 ### Branching
 The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of

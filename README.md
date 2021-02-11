@@ -86,30 +86,41 @@ Run `ng serve --open` for a dev server and opening a web browser window displayi
 ## Developer Information
 This section contains information for developers.
 
-### How to Contribute
-Feel free to implement missing features by creating a pull request or get in touch with our friendly developers.
+### How to contribute
+Feel free to implement missing features by creating a pull request. For any feature requests or found bugs, we kindly
+ask you to create an issue. 
 
 ### Pending features
-WaCoDiS Job Manager UI serves as a lightweight frontend for managing processing jobs. Using the UI avoids writing complex JSON in order to create new jobs via the REST based Job Definition API. However, some useful features are still pending and listed below:
-* For convenience, different WaCoDiS job definition parameters are not supported by the Job Manager UI. E.g. this includes [execution setting parameters](https://github.com/WaCoDiS/apis-and-workflows/blob/7e6aa4e22cf57d9135f6264435b6dc52c62fef9c/openapi/src/main/definitions/wacodis-schemas.yml#L479-L504). To allow users of the UI the to make use of full potential of WaCoDiS, the UI should
+WaCoDiS Job Manager UI serves as a lightweight frontend for managing processing jobs. Using the UI avoids writing
+complex JSON in order to create new jobs via the REST based Job Definition API. However, some useful features are still
+pending and listed below:
+* For convenience, different WaCoDiS job definition parameters are not supported by the Job Manager UI. E.g. this
+includes [execution setting parameters](https://github.com/WaCoDiS/apis-and-workflows/blob/7e6aa4e22cf57d9135f6264435b6dc52c62fef9c/openapi/src/main/definitions/wacodis-schemas.yml#L479-L504).
+To allow users of the UI the to make use of full potential of WaCoDiS, the UI should
 be expanded by additional form elements.
-* The area of interest for WaCoDiS Jobs has to be specified following GeoJSON bbox format [minLon, minLat, maxLon, maxLat]. Up to now, users have to look up the bounding box for an area of interest by using external applications. Embedding a map (e.g. using [Leaflet](https://leafletjs.com/)) would facilitate this workflow.
-* The same applies to specifying the cron definition for a periodic job. The UI form links to https://crontab.guru/ which can be utilized for creating a cron expression. The implementation or embedding of a cron picker widget would ease this tremendously and implies a much better user experience.
+* The area of interest for WaCoDiS Jobs has to be specified following GeoJSON bbox format [minLon, minLat, maxLon,
+maxLat]. Up to now, users have to look up the bounding box for an area of interest by using external applications.
+Embedding a map (e.g. using [Leaflet](https://leafletjs.com/)) would facilitate this workflow.
+* The same applies to specifying the cron definition for a periodic job. The UI form links to https://crontab.guru/
+which can be utilized for creating a cron expression. The implementation or embedding of a cron picker widget would
+ease this tremendously and implies a much better user experience.
 
 ### Branching
-The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of
-development.
+The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable)
+state of development.
 
 ### License and Third Party Lib POM Plugins
 [optional]
 
-## Contact
-|    Name   |   Organization    |    Mail    |
+### Contributing Developers
+|    Name   |   Organization    |    GitHub    |
 | :-------------: |:-------------:| :-----:|
-| Sebastian Drost | Bochum University of Applied Sciences | sebastian.drost@hs-bochum.de |
-| Arne Vogt | Bochum University of Applied Sciences | arne.vogt@hs-bochum.de |
-| Andreas Wytzisk  | Bochum University of Applied Sciences | andreas.wytzisk@hs-bochum.de |
-| Matthes Rieke | 52° North GmbH | m.rieke@52north.org |
+| Imke Ines Klatt  | 52° North GmbH | [imkeines](https://github.com/imkeines) |
+| Sebastian Drost | 52° North GmbH | [SebaDro](https://github.com/SebaDro) |
+
+## Contact
+The WaCoDiS project is maintained by [52°North GmbH](https://52north.org/). If you have any questions about this or any
+other repository related to WaCoDiS, please contact wacodis-info@52north.org.
 
 ## Credits and Contributing Organizations
 - Department of Geodesy, Bochum University of Applied Sciences, Bochum
